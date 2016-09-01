@@ -6,25 +6,34 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Template - Hive读JSON | 胡思乱想</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="= 简述 =安全模块记录用户20个维度的数据。所有数据以JSON格式被保存为大量的小文件，故通过hadoop archive命令被归档为har格式的文件。通过以下命令可查看数据内容：
-1hadoop fs -ls har:///home/tianyida/safedata/20160811/data.har
-= 数据处理 =
-Preprocss  对数据进行前处理   将uuid/mac/im/i">
+  <meta name="description" content="简述安全模块记录用户20个维度的数据。所有数据以JSON格式被保存为大量的小文件，故通过hadoop archive命令被归档为har格式的文件。通过以下命令可查看数据内容：
+1hadoop fs -ls har:///path/to/data.har
+数据处理   
+
+Preprocss  对数据进行前处理
+Create table schema with JSON sample
+Load JS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Template - Hive读JSON">
 <meta property="og:url" content="http://yoursite.com/2016/09/01/Template-Hive读JSON/index.html">
 <meta property="og:site_name" content="胡思乱想">
-<meta property="og:description" content="= 简述 =安全模块记录用户20个维度的数据。所有数据以JSON格式被保存为大量的小文件，故通过hadoop archive命令被归档为har格式的文件。通过以下命令可查看数据内容：
-1hadoop fs -ls har:///home/tianyida/safedata/20160811/data.har
-= 数据处理 =
-Preprocss  对数据进行前处理   将uuid/mac/im/i">
-<meta property="og:updated_time" content="2016-09-01T05:37:57.000Z">
+<meta property="og:description" content="简述安全模块记录用户20个维度的数据。所有数据以JSON格式被保存为大量的小文件，故通过hadoop archive命令被归档为har格式的文件。通过以下命令可查看数据内容：
+1hadoop fs -ls har:///path/to/data.har
+数据处理   
+
+Preprocss  对数据进行前处理
+Create table schema with JSON sample
+Load JS">
+<meta property="og:updated_time" content="2016-09-01T05:57:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Template - Hive读JSON">
-<meta name="twitter:description" content="= 简述 =安全模块记录用户20个维度的数据。所有数据以JSON格式被保存为大量的小文件，故通过hadoop archive命令被归档为har格式的文件。通过以下命令可查看数据内容：
-1hadoop fs -ls har:///home/tianyida/safedata/20160811/data.har
-= 数据处理 =
-Preprocss  对数据进行前处理   将uuid/mac/im/i">
+<meta name="twitter:description" content="简述安全模块记录用户20个维度的数据。所有数据以JSON格式被保存为大量的小文件，故通过hadoop archive命令被归档为har格式的文件。通过以下命令可查看数据内容：
+1hadoop fs -ls har:///path/to/data.har
+数据处理   
+
+Preprocss  对数据进行前处理
+Create table schema with JSON sample
+Load JS">
   
     <link rel="alternative" href="/atom.xml" title="胡思乱想" type="application/atom+xml">
   
@@ -235,11 +244,14 @@ Preprocss  对数据进行前处理   将uuid/mac/im/i">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>= 简述 =<br>安全模块记录用户20个维度的数据。所有数据以JSON格式被保存为大量的小文件，故通过hadoop archive命令被归档为har格式的文件。<br>通过以下命令可查看数据内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop fs -ls har:///home/tianyida/safedata/20160811/data.har</div></pre></td></tr></table></figure>
-<p>= 数据处理 =</p>
-<h1 id="Preprocss-对数据进行前处理"><a href="#Preprocss-对数据进行前处理" class="headerlink" title="Preprocss  对数据进行前处理"></a>Preprocss  对数据进行前处理</h1><p>   将uuid/mac/im/is等字段，补全至ac和base之外的其它维度数据，用以标识用户。再将数据由har格式导出为hdfs的lzo压缩格式数据。   </p>
-<h1 id="Load-JSON-to-Hive"><a href="#Load-JSON-to-Hive" class="headerlink" title="Load JSON to Hive"></a>Load JSON to Hive</h1><p>``</p>
+        <p><strong>简述</strong><br>安全模块记录用户20个维度的数据。所有数据以JSON格式被保存为大量的小文件，故通过hadoop archive命令被归档为har格式的文件。<br>通过以下命令可查看数据内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop fs -ls har:///path/to/data.har</div></pre></td></tr></table></figure>
+<p><strong>数据处理</strong>   </p>
+<ol>
+<li>Preprocss  对数据进行前处理</li>
+<li>Create table schema with JSON sample</li>
+<li>Load JSON into hive table</li>
+</ol>
 
       
     </div>
