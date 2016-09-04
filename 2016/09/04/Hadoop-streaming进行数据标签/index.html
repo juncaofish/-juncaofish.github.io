@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hadoop-streaming进行数据标签 | 胡思乱想</title>
+  <title>胡思乱想</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,13 +15,25 @@
     <meta name="keywords" content="Husband, Engineer, Maker" />
   
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="Hadoop-streaming进行数据标签">
-<meta property="og:url" content="http://yoursite.com/2016/09/03/Hadoop-streaming进行数据标签/index.html">
+  <meta name="description" content="title: Hadoop-streaming进行数据标签
+comments: true任务需求
+为了便于并行处理，我们的raw data通常以JSON格式存储在HDFS上。再通过solr建立索引，供线上系统去检索。这样在需要对数据进行操作时，只需要实现相应的MapReduce方法，再添加到process flow里面。例如，一条数据的sample:
+1&amp;#123;&amp;quot;data&amp;quot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="胡思乱想">
+<meta property="og:url" content="http://yoursite.com/2016/09/04/Hadoop-streaming进行数据标签/index.html">
 <meta property="og:site_name" content="胡思乱想">
-<meta property="og:updated_time" content="2016-09-02T16:53:05.000Z">
+<meta property="og:description" content="title: Hadoop-streaming进行数据标签
+comments: true任务需求
+为了便于并行处理，我们的raw data通常以JSON格式存储在HDFS上。再通过solr建立索引，供线上系统去检索。这样在需要对数据进行操作时，只需要实现相应的MapReduce方法，再添加到process flow里面。例如，一条数据的sample:
+1&amp;#123;&amp;quot;data&amp;quot">
+<meta property="og:updated_time" content="2016-09-04T04:44:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hadoop-streaming进行数据标签">
+<meta name="twitter:title" content="胡思乱想">
+<meta name="twitter:description" content="title: Hadoop-streaming进行数据标签
+comments: true任务需求
+为了便于并行处理，我们的raw data通常以JSON格式存储在HDFS上。再通过solr建立索引，供线上系统去检索。这样在需要对数据进行操作时，只需要实现相应的MapReduce方法，再添加到process flow里面。例如，一条数据的sample:
+1&amp;#123;&amp;quot;data&amp;quot">
 
   
 
@@ -136,17 +148,22 @@
 </div>
 
 
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">Posts List</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#comments-true"><span class="toc-text">comments: true</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#任务需求"><span class="toc-text">任务需求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#任务实现"><span class="toc-text">任务实现</span></a></li></ol></li></ol>
+  </div>
+
 
 
 <div class="content content-post CENTER">
    <article id="post-Hadoop-streaming进行数据标签" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">Hadoop-streaming进行数据标签</h1>
+    <h1 class="post-title">(no title)</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2016.09.03</span>
+        <span>2016.09.04</span>
       </span>
 
       
@@ -166,7 +183,23 @@
 
   <div class="article-content">
     
-      
+      <hr>
+<p>title: Hadoop-streaming进行数据标签</p>
+<h2 id="comments-true"><a href="#comments-true" class="headerlink" title="comments: true"></a>comments: true</h2><h3 id="任务需求"><a href="#任务需求" class="headerlink" title="任务需求"></a>任务需求</h3><hr>
+<p>为了便于并行处理，我们的raw data通常以JSON格式存储在HDFS上。再通过solr建立索引，供线上系统去检索。<br>这样在需要对数据进行操作时，只需要实现相应的MapReduce方法，再添加到process flow里面。<br>例如，一条数据的sample:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;&quot;data&quot;:&quot;value&quot;,&quot;timestamp&quot;:unixtime,&quot;other_fields&quot;:&quot;something&quot;&#125;</div></pre></td></tr></table></figure>
+<p>有一天，我们的机器学习工程师train了一些model，需要对所有的raw data进行labelling，也就是把数据变成这样:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;&quot;data&quot;:&quot;value&quot;,&quot;timestamp&quot;:unixtime,&quot;other_fields&quot;:&quot;something&quot;,&quot;label1&quot;:&quot;predict1(value)&quot;,&quot;label2&quot;:&quot;predict2(value)&quot;&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="任务实现"><a href="#任务实现" class="headerlink" title="任务实现"></a>任务实现</h3><hr>
+<p>由于我们做数据的批处理通常是用Java实现Hadoop的MapReduce，而机器学习的工程师的model无一例外都是使用目前比较流行的python library。  </p>
+<p>为了解决这个开发语言异构的问题，我们首先想到了web service。<br>即在Mapper中实现:  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create HTTP Get request  -&gt;  python model with wsgi server -&gt; prediction result -&gt; labels on raw data</div></pre></td></tr></table></figure>
+<p>但是实际运行时发现，mapreduce job在调用web service时的效率是相当感人。<br>多个mapper在向wsgi server发起同步请求时，如果server的并发响应不够，request就会进行排队等待。<br>Quora上搜索到的一条提问也得到这样的<a href="https://www.quora.com/How-can-I-optimise-web-service-calls-from-a-hadoop-system" target="_blank" rel="external">解释</a></p>
+<blockquote>
+<p>if you’re asking how to efficiently make web service calls from mapreduce jobs, the answer is simple; don’t make web service calls from mapreduce jobs.  </p>
+</blockquote>
+<p>然后我们就只好另想办法，既要hadoop来管理job，又要能能够较为高效地调用python实现的model。<br>而<a href="http://hadoop.apache.org/docs/r2.6.0/hadoop-mapreduce-client/hadoop-mapreduce-client-core/HadoopStreaming.html" target="_blank" rel="external">Hadoop-streaming</a>就可以帮我们完成这个任务。调用示例：  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hadoop jar hadoop-streaming-2.6.0.jar \</div><div class="line">    -input myInputDirs \</div><div class="line">    -output myOutputDir \</div><div class="line">    -mapper /bin/cat \</div><div class="line">    -reducer /usr/bin/wc</div></pre></td></tr></table></figure>
+
     
   </div>
 </article>
@@ -269,7 +302,7 @@
     
   <section class="duoshuo-comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="" data-title="Hadoop-streaming进行数据标签" data-url="http://yoursite.com/2016/09/03/Hadoop-streaming进行数据标签/index.html"></div>
+    <div class="ds-thread" data-thread-key="" data-title="" data-url="http://yoursite.com/2016/09/04/Hadoop-streaming进行数据标签/index.html"></div>
     <!-- 多说评论框 end -->
   </section>
 
