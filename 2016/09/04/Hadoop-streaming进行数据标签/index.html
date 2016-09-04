@@ -15,22 +15,22 @@
     <meta name="keywords" content="Husband, Engineer, Maker" />
   
 
-  <meta name="description" content="title: Hadoop-streaming进行数据标签comments: truecategories: 正儿八经 
-tags: [博客]任务需求
-为了便于并行处理，我们的raw data通常以JSON格式存储在HDFS上。再通过solr建立索引，供线上系统去检索。这样在需要对数据进行操作时，只需要实现相应的MapReduce方法，再添加到process flow里面。例如，一条数据的sam">
+  <meta name="description" content="title: hadoop-streaming进行数据标签comments: truecategories: 正儿八经 
+tags: [博客]问题任务需求
+为了便于并行处理，我们的raw data通常以JSON格式存储在HDFS上。再通过solr建立索引，供线上系统去检索。这样在需要对数据进行操作时，只需要实现相应的MapReduce方法，再添加到process flow里面。例如，一条数据的s">
 <meta property="og:type" content="article">
 <meta property="og:title" content="胡思乱想">
 <meta property="og:url" content="http://yoursite.com/2016/09/04/Hadoop-streaming进行数据标签/index.html">
 <meta property="og:site_name" content="胡思乱想">
-<meta property="og:description" content="title: Hadoop-streaming进行数据标签comments: truecategories: 正儿八经 
-tags: [博客]任务需求
-为了便于并行处理，我们的raw data通常以JSON格式存储在HDFS上。再通过solr建立索引，供线上系统去检索。这样在需要对数据进行操作时，只需要实现相应的MapReduce方法，再添加到process flow里面。例如，一条数据的sam">
-<meta property="og:updated_time" content="2016-09-04T04:46:47.000Z">
+<meta property="og:description" content="title: hadoop-streaming进行数据标签comments: truecategories: 正儿八经 
+tags: [博客]问题任务需求
+为了便于并行处理，我们的raw data通常以JSON格式存储在HDFS上。再通过solr建立索引，供线上系统去检索。这样在需要对数据进行操作时，只需要实现相应的MapReduce方法，再添加到process flow里面。例如，一条数据的s">
+<meta property="og:updated_time" content="2016-09-04T04:49:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="胡思乱想">
-<meta name="twitter:description" content="title: Hadoop-streaming进行数据标签comments: truecategories: 正儿八经 
-tags: [博客]任务需求
-为了便于并行处理，我们的raw data通常以JSON格式存储在HDFS上。再通过solr建立索引，供线上系统去检索。这样在需要对数据进行操作时，只需要实现相应的MapReduce方法，再添加到process flow里面。例如，一条数据的sam">
+<meta name="twitter:description" content="title: hadoop-streaming进行数据标签comments: truecategories: 正儿八经 
+tags: [博客]问题任务需求
+为了便于并行处理，我们的raw data通常以JSON格式存储在HDFS上。再通过solr建立索引，供线上系统去检索。这样在需要对数据进行操作时，只需要实现相应的MapReduce方法，再添加到process flow里面。例如，一条数据的s">
 
   
 
@@ -147,7 +147,7 @@ tags: [博客]任务需求
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">Posts List</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tags-博客"><span class="toc-text">tags: [博客]</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#任务需求"><span class="toc-text">任务需求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#任务实现"><span class="toc-text">任务实现</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tags-博客"><span class="toc-text">tags: [博客]</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#问题"><span class="toc-text">问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#任务需求"><span class="toc-text">任务需求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#任务实现"><span class="toc-text">任务实现</span></a></li></ol></li></ol>
   </div>
 
 
@@ -181,8 +181,8 @@ tags: [博客]任务需求
   <div class="article-content">
     
       <hr>
-<p>title: Hadoop-streaming进行数据标签<br>comments: true<br>categories: 正儿八经 </p>
-<h2 id="tags-博客"><a href="#tags-博客" class="headerlink" title="tags: [博客]"></a>tags: [博客]</h2><h3 id="任务需求"><a href="#任务需求" class="headerlink" title="任务需求"></a>任务需求</h3><hr>
+<p>title: hadoop-streaming进行数据标签<br>comments: true<br>categories: 正儿八经 </p>
+<h2 id="tags-博客"><a href="#tags-博客" class="headerlink" title="tags: [博客]"></a>tags: [博客]</h2><h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><h3 id="任务需求"><a href="#任务需求" class="headerlink" title="任务需求"></a>任务需求</h3><hr>
 <p>为了便于并行处理，我们的raw data通常以JSON格式存储在HDFS上。再通过solr建立索引，供线上系统去检索。<br>这样在需要对数据进行操作时，只需要实现相应的MapReduce方法，再添加到process flow里面。<br>例如，一条数据的sample:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;&quot;data&quot;:&quot;value&quot;,&quot;timestamp&quot;:unixtime,&quot;other_fields&quot;:&quot;something&quot;&#125;</div></pre></td></tr></table></figure>
 <p>有一天，我们的机器学习工程师train了一些model，需要对所有的raw data进行labelling，也就是把数据变成这样:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;&quot;data&quot;:&quot;value&quot;,&quot;timestamp&quot;:unixtime,&quot;other_fields&quot;:&quot;something&quot;,&quot;label1&quot;:&quot;predict1(value)&quot;,&quot;label2&quot;:&quot;predict2(value)&quot;&#125;</div></pre></td></tr></table></figure></p>
