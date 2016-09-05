@@ -21,7 +21,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/09/05/用Hive处理海量JSON数据/index.html">
 <meta property="og:site_name" content="胡思乱想">
 <meta property="og:description" content="&amp;#x7B80;&amp;#x8FF0;&amp;#x516C;&amp;#x53F8;&amp;#x67D0;&amp;#x6A21;&amp;#x5757;&amp;#x6536;&amp;#x96C6;&amp;#x5230;&amp;#x7684;&amp;#x6240;&amp;#x6709;&amp;#x6570;&amp;#x636E;&amp;#x4EE5;JSON&amp;#x683C;&amp;#x5F0F;&amp;#x88AB;&amp;#x4FDD;&amp;#x5B58;&amp;#x4E3A;&amp;#x5927;&amp;#x91CF;&amp;#x7">
-<meta property="og:updated_time" content="2016-09-05T11:30:00.000Z">
+<meta property="og:updated_time" content="2016-09-05T11:34:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用Hive处理海量JSON数据">
 <meta name="twitter:description" content="&amp;#x7B80;&amp;#x8FF0;&amp;#x516C;&amp;#x53F8;&amp;#x67D0;&amp;#x6A21;&amp;#x5757;&amp;#x6536;&amp;#x96C6;&amp;#x5230;&amp;#x7684;&amp;#x6240;&amp;#x6709;&amp;#x6570;&amp;#x636E;&amp;#x4EE5;JSON&amp;#x683C;&amp;#x5F0F;&amp;#x88AB;&amp;#x4FDD;&amp;#x5B58;&amp;#x4E3A;&amp;#x5927;&amp;#x91CF;&amp;#x7">
@@ -187,8 +187,8 @@
 <ul>
 <li>SerDe is a short name for &#x201C;Serializer and Deserializer.&#x201D;</li>
 <li>Hive uses SerDe (and FileFormat) to read and write table rows.</li>
-<li>HDFS files &#x2013;&gt; InputFileFormat &#x2013;&gt; <key, value=""> &#x2013;&gt; Deserializer &#x2013;&gt; Row object</key,></li>
-<li>Row object &#x2013;&gt; Serializer &#x2013;&gt; <key, value=""> &#x2013;&gt; OutputFileFormat &#x2013;&gt; HDFS files</key,></li>
+<li>HDFS files &#x2013;&gt; InputFileFormat &#x2013;&gt; (key, value) &#x2013;&gt; Deserializer &#x2013;&gt; Row object</li>
+<li>Row object &#x2013;&gt; Serializer &#x2013;&gt; (key, value) &#x2013;&gt; OutputFileFormat &#x2013;&gt; HDFS files</li>
 </ul>
 </blockquote>
 <p>&#x4E5F;&#x5C31;&#x662F;&#x8BF4;SerDe&#x5176;&#x5B9E;&#x662F;&#x4E2A;&#x9002;&#x914D;&#x5668;&#xFF0C;&#x5728;&#x6570;&#x636E;&#x52A0;&#x8F7D;&#x65F6;&#xFF0C;&#x5C06;&#x539F;&#x5148;&#x7684;HDFS&#x6570;&#x636E;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x4E3A;Hive&#x4E2D;&#x7684;Row Object&#xFF0C;&#x5728;&#x6570;&#x636E;&#x5BFC;&#x51FA;&#x65F6;&#xFF0C;&#x5C06;Row Object&#x5E8F;&#x5217;&#x5316;&#x4E3A;HDFS&#x6587;&#x672C;&#x3002;&#x800C;&#x4E14;&#x5927;&#x591A;&#x6570;&#x65F6;&#x5019;&#xFF0C;&#x7528;&#x6237;&#x5173;&#x5FC3;&#x7684;&#x662F;&#x5982;&#x4F55;&#x5BFC;&#x5165;&#x81EA;&#x5DF1;&#x7684;&#x6570;&#x636E;&#x5230;Hive&#xFF0C;&#x56E0;&#x6B64;&#x66F4;&#x5173;&#x5FC3;Deserializer&#x3002;<br>&#x76EE;&#x524D;Hive&#x5DF2;&#x7ECF;&#x5B9E;&#x73B0;&#x4E86;&#x4E00;&#x4E9B;&#x6570;&#x636E;&#x683C;&#x5F0F;&#x7684;SerDe&#x63A5;&#x53E3;&#xFF0C;&#x5982;ORC/Avro/CSV&#x7B49;&#x7B49;&#xFF0C;&#x800C;&#x4E14;&#x7531;&#x4E8E;Hive&#x672C;&#x8EAB;&#x5F00;&#x653E;&#x4E86;Deserializer&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x9700;&#x8981;&#x53BB;&#x5B9E;&#x73B0;&#x81EA;&#x5DF1;&#x7684;SerDe&#x3002;<br>&#x672C;&#x7740;&#x4E0D;&#x8981;&#x91CD;&#x590D;&#x5236;&#x9020;&#x8F6E;&#x5B50;&#x7684;&#x7CBE;&#x795E;&#xFF0C;&#x5728;Stackoverflow&#x4E0A;&#x627E;&#x5230;&#x4E86;&#x8FD9;&#x6837;&#x7684;&#x4E00;&#x4E2A;<a href="http://stackoverflow.com/questions/33927116/load-complex-json-in-hive-using-jsonserde" target="_blank" rel="external">&#x5E16;&#x5B50;</a>&#xFF0C;&#x56DE;&#x7B54;&#x5982;&#x4F55;&#x9AD8;&#x6548;&#x751F;&#x6210;Hive Schema&#x5E76;&#x52A0;&#x8F7D;&#x590D;&#x6742;JSON&#x6570;&#x636E;&#x5230;Hive&#x5F53;&#x4E2D;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x540C;&#x65F6;&#x89E3;&#x51B3;&#x4E86;JSON&#x6570;&#x636E;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x548C;Hive&#x8868;Schema&#x521B;&#x5EFA;&#x4E24;&#x4E2A;&#x95EE;&#x9898;&#x3002;</p>
